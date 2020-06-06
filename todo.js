@@ -42,6 +42,7 @@ let controller = function() {
   };
 
   $(".comment-input button").on("click", function(event) {
+    console.log($(".comment-input button").attr("id"));
     addCommentFromInputBox();
   });
 
@@ -52,7 +53,7 @@ let controller = function() {
   });
 };
 
-let deleteComment = () => {
+let deleteToDo = () => {
   //delete a comment from db
   let content = $("#deleteOne").val();
   $.ajax({
@@ -66,15 +67,15 @@ let deleteComment = () => {
   window.location.reload();
 }
 
-let getComment = () => {
+let getToDo = () => {
   //clear outDiv
   $("#outDiv").html("");
   let pElem;
-  //retrieve a comment from db
+  //retrieve a todo from db
   let content = $("#getOne").val();
   $.ajax({
       method: "GET",
-      url: "http://localhost:8888/getcomment/" + content
+      url: "http://localhost:8888/gettodo/" + content
     })
     .done(function(msg) {
       console.log("Comment retrieved: " + msg.message.data);
@@ -98,8 +99,8 @@ $(document).ready(() => {
   btn03 = document.querySelectorAll('button')[3];
   btn03.addEventListener('click', deleteAll);
   btn02 = document.querySelectorAll('button')[2];
-  btn02.addEventListener('click', deleteComment);
+  btn02.addEventListener('click', deleteToDo);
   btn01 = document.querySelectorAll('button')[1];
-  btn01.addEventListener('click', getComment);
+  btn01.addEventListener('click', getToDo);
   controller();
 });

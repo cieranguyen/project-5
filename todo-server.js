@@ -52,13 +52,13 @@ app.get('/todos', (req, res) => {
     res.status(200).send({
       success: 'true',
       message: 'todos retrieved successfully',
-      comments: result
+      todos: result
     })
   })
 });
 
 //endpoint to get a single comment
-app.get('/getcomment/:data', (req, res, next) => {
+app.get('/gettodo/:data', (req, res, next) => {
   const data = req.params.data;
 
   db.collection(collName).findOne({
@@ -94,7 +94,7 @@ app.post('/addtodo', (req, res) => {
 })
 
 //Endpoint to Delete a single comment
-app.post('/deletecomment/:data', (req, res) => {
+app.post('/deletetodo/:data', (req, res) => {
   const data = req.params.data;
   console.log(data)
   db.collection(collName).deleteOne({
@@ -107,7 +107,7 @@ app.post('/deletecomment/:data', (req, res) => {
 
   return res.status(200).send({
     status_code: 200,
-    message: "comment deleted",
+    message: "todo deleted",
   })
 });
 
